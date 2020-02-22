@@ -21,17 +21,17 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         loadMapView()
     }
-    func makeAnnotations() -> [MKPointAnnotation] {
-        var annotations = [MKPointAnnotation]
-        //we will go throught he array of annotations and make annotation and the minumumm needs a coordinate
-        for location in NYSchools. {
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = location.coordinate
-            annotation.title = location.title
-            annotations.append(annotation)
-        }
-        return annotations
-    }
+//    func makeAnnotations() -> [MKPointAnnotation] {
+//        var annotations = [MKPointAnnotation]
+//        //we will go throught he array of annotations and make annotation and the minumumm needs a coordinate
+//        for location in NYSchools. {
+//            let annotation = MKPointAnnotation()
+//            annotation.coordinate = location.coordinate
+//            annotation.title = location.title
+//            annotations.append(annotation)
+//        }
+//        return annotations
+//    }
     private func loadMapView() {
          let annotations = makeAnnotations()
          mapView.addAnnotations(annotations)

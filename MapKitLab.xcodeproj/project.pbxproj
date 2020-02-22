@@ -91,6 +91,17 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		4D1AF46E2401C16300E42628 /* SupportiveFiles */ = {
+			isa = PBXGroup;
+			children = (
+				4DC9D0CC24008A5500658EF7 /* Main.storyboard */,
+				4DC9D0C624008A5500658EF7 /* AppDelegate.swift */,
+				4DC9D0C824008A5500658EF7 /* SceneDelegate.swift */,
+				4DC9D0CF24008A5700658EF7 /* Assets.xcassets */,
+			);
+			path = SupportiveFiles;
+			sourceTree = "<group>";
+		};
 		4DC9D0BA24008A5500658EF7 = {
 			isa = PBXGroup;
 			children = (
@@ -112,13 +123,10 @@
 		4DC9D0C524008A5500658EF7 /* MapKitLab */ = {
 			isa = PBXGroup;
 			children = (
-				4DC9D0C624008A5500658EF7 /* AppDelegate.swift */,
-				4DC9D0C824008A5500658EF7 /* SceneDelegate.swift */,
+				4D1AF4622400A1E500E42628 /* Model */,
+				4D1AF46E2401C16300E42628 /* SupportiveFiles */,
 				4D1AF4642400A1FF00E42628 /* Network */,
 				4D1AF4632400A1ED00E42628 /* Controllers */,
-				4D1AF4622400A1E500E42628 /* Model */,
-				4DC9D0CC24008A5500658EF7 /* Main.storyboard */,
-				4DC9D0CF24008A5700658EF7 /* Assets.xcassets */,
 				4DC9D0D124008A5700658EF7 /* LaunchScreen.storyboard */,
 				4DC9D0D424008A5700658EF7 /* Info.plist */,
 			);
