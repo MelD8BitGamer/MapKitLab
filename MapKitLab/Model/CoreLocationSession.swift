@@ -63,7 +63,7 @@ class CoreLocationSession: NSObject {
 //                        //self.locationManager.stopMonitoring(for: CLRegion)
 //                    }
 //            }
-//                let region = CLCircularRegion(center: NYSchools, radius: 500, identifier: identifier)
+//            let region = CLCircularRegion(center: , radius: 500, identifier: identifier)
 //            //it will update the region when it enters or leaves the radius, the default is value is usually true
 //            region.notifyOnEntry = true
 //            region.notifyOnExit = false
@@ -71,6 +71,7 @@ class CoreLocationSession: NSObject {
 //            locationManager.startMonitoring(for: region)
 //        }
 //}
+    
     public func convertPlaceNameToCoordinate(addressString: String) {
           //converting an address to coordinate
           CLGeocoder().geocodeAddressString("") { (placemarks, error) in

@@ -14,28 +14,49 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
       private let locationSession = CoreLocationSession()
+    public var schools = [NYSchools]()
+    private var isShowingAnnotations = false
+    private var annotations = [MKPointAnnotation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.showsUserLocation = true
         mapView.delegate = self
         loadMapView()
+        api()
+     
     }
-//    func makeAnnotations() -> [MKPointAnnotation] {
-//        var annotations = [MKPointAnnotation]
-//        //we will go throught he array of annotations and make annotation and the minumumm needs a coordinate
-//        for location in NYSchools. {
-//            let annotation = MKPointAnnotation()
-//            annotation.coordinate = location.coordinate
-//            annotation.title = location.title
-//            annotations.append(annotation)
-//        }
-//        return annotations
-//    }
+    func api() {
+        APIClient.getSchools { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+               print("print")
+            case .success(let school):
+                DispatchQueue.main.async {
+                    //this result make annotations is unused
+                    self?.schools = school
+                    self?.makeAnnotations()
+                }
+            }
+        }
+    }
+    
+    func makeAnnotations() -> [MKPointAnnotation] {
+        var annotations = [MKPointAnnotation]()
+        //we will go through the array of annotations and make annotation and the min needs a coordinate
+        for location in schools {
+            let annotation = MKPointAnnotation()
+            //TODO: CLLocation
+            annotation.coordinate = CLLocationCoordinate2D(latitude: Double(location.latitude) as! CLLocationDegrees, longitude: Double(location.longitude) as! CLLocationDegrees)
+            annotation.title = location.schoolName
+            annotations.append(annotation)
+        }
+        return annotations
+    }
     private func loadMapView() {
          let annotations = makeAnnotations()
          mapView.addAnnotations(annotations)
-         //This will zoom in and show as many annotations as you can on the maoview. So it is a more zoomed result
+         //This will zoom in and show as many annotations as you can on the mapview. So it is a more zoomed result
          mapView.showAnnotations(annotations, animated: true)
      }
 }
@@ -49,7 +70,7 @@ extension MapViewController: MKMapViewDelegate {
     guard annotation is MKPointAnnotation else {
         return nil
     }
-    //if it does exsist we will use it if not we will make a new one and the identifier  string only matters when you delete it
+    //if it does exist we will use it if not we will make a new one and the identifier  string only matters when you delete it
     let identifier = "locationAnnotation"
     var annotationView: MKPinAnnotationView
     ///try to deque and reuse annotation view
